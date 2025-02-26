@@ -18,7 +18,19 @@ button{
     background-color: rgb(255, 255, 153);
     color: rgb(42, 213, 42);
     font-size:  30px;
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,0.2),0 5px 5px 0 rgba(0,0,0,0.19);
+    border: none;
+    border-radius: 13px
+
 }
+
+button:hover {
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,0.24),0 5px 5px 0 rgba(0,0,0,0.19);
+  }
+
+  button:active {
+    background-color: rgb(225, 225, 139);
+  }
 
 input{
     font-size: 20px;

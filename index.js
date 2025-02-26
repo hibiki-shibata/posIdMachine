@@ -49,7 +49,7 @@
 
             // Create a link element to trigger the download
             const link = document.createElement('a');
-            link.download = 'posMenu.json'; // Set the desired filename
+            link.download = 'PosID_registered_menu.json'; // Set the desired filename
             link.href = URL.createObjectURL(blob); // Create an object URL for the Blob
 
             // Trigger the download by clicking the link programmatically

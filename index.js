@@ -29,16 +29,36 @@
             try{
             const prefix = "AutoPOSID";
             let counter = 1;
-            // const usedExternalIds = new Set();
+            const usedExternalIds = new Set();
             
+            // Items and Option Categories
             ["items", "options"].forEach(itemsOrOptionsCategory => {
                 jsonData[itemsOrOptionsCategory].forEach(eachItemOrOptions => {
-                    let externalId;        
+                    let externalId;   
+                    do{     
                         externalId = `${prefix}_${counter}`;
                         counter++;        
-            
+                    } while (usedExternalIds.has(externalId));
+                    
+                    usedExternalIds.add(externalId); // Prevent Duplicated ID
                     eachItemOrOptions.external_id = externalId;
                 });
+            });
+
+
+            // Opion Item
+            jsonData["options"].forEach(optionCategories => {
+                optionCategories.values.forEach( childOptionItems => {
+                    let externalId2;   
+                    do{     
+                        externalId2 = `${prefix}_${counter}`;
+                        counter++;        
+                    } while (usedExternalIds.has(externalId2));
+                    
+                    usedExternalIds.add(externalId2); // Prevent Duplicated ID
+                    childOptionItems.external_id = externalId2;
+                })
+                
             });
             
             document.getElementById('output').value = JSON.stringify(jsonData, null, 4);
@@ -65,7 +85,8 @@
 
         function removeJSON() {
                 jsonData = null
-                counter = 1         
+                counter = 1      
+                usedExternalIds.clear();   
                 document.getElementById('jsonFileInput').value = '';            
             }
         

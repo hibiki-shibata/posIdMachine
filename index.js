@@ -84,11 +84,16 @@
 
 
         function removeJSON() {
+            try{
                 jsonData = null
-                counter = 1      
-                usedExternalIds.clear();   
+                counter = 1       
                 document.getElementById('jsonFileInput').value = '';            
+                document.getElementById('output').value = '';            
+
+            }catch(e){
+                console.log(e)
             }
+                    }
         
 
 

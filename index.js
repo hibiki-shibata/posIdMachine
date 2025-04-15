@@ -67,7 +67,8 @@ function processJSON() {
         document.getElementById('output').value = JSON.stringify(jsonData, null, 4);
 
         // Convert the modified JSON to a Blob
-        const jsonString = JSON.stringify(jsonData, null, 4);
+        // const jsonString = JSON.stringify(jsonData, null, 4);
+        const jsonString = JSON.stringify(jsonData);
         const blob = new Blob([jsonString], { type: 'application/json' });
 
         // Create a link element to trigger the download

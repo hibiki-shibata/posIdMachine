@@ -11,8 +11,7 @@ document.getElementById('jsonFileInput').addEventListener('change', function (ev
         const reader = new FileReader();
         reader.onload = function (uploadedData) {
             try {
-                jsonData = JSON.parse(uploadedData.target.result);
-                // alert("JSON file loaded successfully!");
+                jsonData = JSON.parse(uploadedData.target.result);            
             } catch (error) {
                 alert("Invalid JSON format. Please check the file.");
             }
@@ -30,7 +29,7 @@ function processJSON() {
         return;
     }
     try {
-        const prefix = "AutoPOSID";
+        const prefix = "AUTO_POSID";
         let counter = 1;
         const usedExternalIds = new Set();
 
@@ -67,7 +66,6 @@ function processJSON() {
         document.getElementById('output').value = JSON.stringify(jsonData, null, 4);
 
         // Convert the modified JSON to a Blob
-        // const jsonString = JSON.stringify(jsonData, null, 4);
         const jsonString = JSON.stringify(jsonData);
         const blob = new Blob([jsonString], { type: 'application/json' });
 
@@ -79,13 +77,17 @@ function processJSON() {
         // Trigger the download by clicking the link programmatically
         link.click();
 
-        removeJSON();
-
     } catch (e) {
-        alert("Something went wrong\n" + e)
+        alert("Something went wrong:(\nError content:\n" + e)
     }
 }
 
+
+
+function posidForItems(){
+
+    
+}
 
 
 
@@ -99,7 +101,7 @@ function removeJSON() {
         document.getElementById('output').value = '';
 
     } catch (e) {
-        console.log(e)
+        alert("Something went wrong:(\nError content:\n" + e)
     }
 }
 

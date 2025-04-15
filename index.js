@@ -6,12 +6,11 @@ let fileName = "";
 document.getElementById('jsonFileInput').addEventListener('change', function (event) {
     const file = event.target.files[0];
     fileName = file.name;
-    console.log(fileName)
-    
+
     if (file) {
 
         const reader = new FileReader();
-        reader.onload = function (uploadedData) { 
+        reader.onload = function (uploadedData) {
             try {
                 console.log("UPLOADEDATA => " + JSON.stringify(uploadedData.name))
                 jsonData = JSON.parse(uploadedData.target.result);
@@ -75,17 +74,16 @@ function processJSON() {
 
         // Create a link element to trigger the download
         const link = document.createElement('a');
-        // link.download = fileName + "with_posID.json" // Set the desired filename
-        link.download = `$has_PosID_${fileName}` // Set the desired filename
+        link.download = `$has_posID_${fileName}` // Set the desired filename
         link.href = URL.createObjectURL(blob); // Create an object URL for the Blob
 
         // Trigger the download by clicking the link programmatically
         link.click();
 
+        removeJSON();
+
     } catch (e) {
-
         alert("Something went wrong\n" + e)
-
     }
 }
 

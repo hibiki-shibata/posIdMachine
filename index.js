@@ -1,6 +1,7 @@
 
 let jsonData = null;
 let fileName = "";
+const posidPrefix = "AUTO_POSID";
 
 // handle JSON file uploads
 document.getElementById('jsonFileInput').addEventListener('change', function (event) {
@@ -9,61 +10,34 @@ document.getElementById('jsonFileInput').addEventListener('change', function (ev
 
     if (file) {
         const reader = new FileReader();
+
         reader.onload = function (uploadedData) {
             try {
-                jsonData = JSON.parse(uploadedData.target.result);            
+                jsonData = JSON.parse(uploadedData.target.result);
             } catch (error) {
                 alert("Invalid JSON format. Please check the file.");
             }
         };
 
         reader.readAsText(file);
-
     }
 });
 
 
-function processJSON() {
+async function processJSON() {
     if (!jsonData) {
-        alert("Please upload a JSON file first. \nClick \"Choose File\" and select your menu JSON file exported from menu editor.");
+        alert("Please select a JSON file first. \nClick \"Choose File\", and select your menu JSON file exported from menu editor.");
         return;
     }
     try {
-        const prefix = "AUTO_POSID";
         let counter = 1;
         const usedExternalIds = new Set();
 
-        // Items and Option Categories
-        ["items", "options"].forEach(itemsOrOptionsCategory => {
-            jsonData[itemsOrOptionsCategory].forEach(eachItemOrOptions => {
-                let externalId;
-                do {
-                    externalId = `${prefix}_${counter}`;
-                    counter++;
-                } while (usedExternalIds.has(externalId));
-
-                usedExternalIds.add(externalId); // Prevent Duplicated ID
-                eachItemOrOptions.external_id = externalId;
-            });
-        });
+        posidForItems(counter, usedExternalIds)
+        posidForOptionItems(counter, usedExternalIds)
 
 
-        //For Opion Items
-        jsonData["options"].forEach(optionCategories => {
-            optionCategories.values.forEach(childOptionItems => {
-                let externalId2;
-                do {
-                    externalId2 = `${prefix}_${counter}`;
-                    counter++;
-                } while (usedExternalIds.has(externalId2));
-
-                usedExternalIds.add(externalId2); // Prevent Duplicated ID
-                childOptionItems.external_id = externalId2;
-            })
-
-        });
-
-        document.getElementById('output').value = JSON.stringify(jsonData, null, 4);
+        document.getElementById('output').value = JSON.stringify(jsonData, null, 4); // Display in Textarea
 
         // Convert the modified JSON to a Blob
         const jsonString = JSON.stringify(jsonData);
@@ -71,11 +45,10 @@ function processJSON() {
 
         // Create a link element to trigger the download
         const link = document.createElement('a');
-        link.download = `$has_posID_${fileName}` // Set the desired filename
+        link.download = `$has_posID_${fileName}` // Set Filename
         link.href = URL.createObjectURL(blob); // Create an object URL for the Blob
 
-        // Trigger the download by clicking the link programmatically
-        link.click();
+        link.click(); // Trigger the download by clicking the link programmatically
 
     } catch (e) {
         alert("Something went wrong:(\nError content:\n" + e)
@@ -84,9 +57,39 @@ function processJSON() {
 
 
 
-function posidForItems(){
+async function posidForItems(counter, usedExternalIds) {
+    // Items and Option Categories
+    ["items", "options"].forEach(itemsOrOptionsCategory => {
+        jsonData[itemsOrOptionsCategory].forEach(eachItemOrOptions => {
+            let externalId;
+            do {
+                externalId = `${posidPrefix}_${counter}`;
+                counter++;
+            } while (usedExternalIds.has(externalId));
 
-    
+            usedExternalIds.add(externalId); // Prevent Duplicated ID
+            eachItemOrOptions.external_id = externalId;
+        });
+    });
+}
+
+
+async function posidForOptionItems(counter, usedExternalIds) {
+
+    //For Opion Items
+    jsonData["options"].forEach(optionCategories => {
+        optionCategories.values.forEach(childOptionItems => {
+            let externalId2;
+            do {
+                externalId2 = `${posidPrefix}_${counter}`;
+                counter++;
+            } while (usedExternalIds.has(externalId2));
+
+            usedExternalIds.add(externalId2); // Prevent Duplicated ID
+            childOptionItems.external_id = externalId2;
+        })
+
+    });
 }
 
 

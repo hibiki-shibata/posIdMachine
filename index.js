@@ -8,11 +8,9 @@ document.getElementById('jsonFileInput').addEventListener('change', function (ev
     fileName = file.name;
 
     if (file) {
-
         const reader = new FileReader();
         reader.onload = function (uploadedData) {
             try {
-                console.log("UPLOADEDATA => " + JSON.stringify(uploadedData.name))
                 jsonData = JSON.parse(uploadedData.target.result);
                 // alert("JSON file loaded successfully!");
             } catch (error) {

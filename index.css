@@ -2,22 +2,23 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     font-size: 40px;
-    background-color: rgb(230, 172, 230);
+    background-color: black;
     color: white;
+    font-family: Gill Sans;
     /* margin: 20px; */
     /* background-color: black; */
     /* color: aliceblue; */
 }
 
 button{
-    height:80px;
-    width:240px;
+    height:50px;
+    width:230px;
     margin-left: 0;
     padding-left: 0;
     font-size: large;
-    background-color: rgb(255, 255, 153);
-    color: rgb(42, 213, 42);
-    font-size:  30px;
+    background-color: #00C2E8;
+    color: white;
+    font-size:  22px;
     box-shadow: 0 5px 5px 0 rgba(0,0,0,0.2),0 5px 5px 0 rgba(0,0,0,0.19);
     border: none;
     border-radius: 13px
@@ -26,11 +27,12 @@ button{
 
 button:hover {
     box-shadow: 0 5px 5px 0 rgba(0,0,0,0.24),0 5px 5px 0 rgba(0,0,0,0.19);
-    background-color: rgb(245, 245, 156);
+    background-color: #5cc0eb;
   }
 
   button:active {
-    background-color: rgb(225, 225, 139);
+    background-color: rgb(0, 157, 224);
+    ;
   }
 
 input{
@@ -41,4 +43,5 @@ textarea {
     width: 80%;
     height: 400px;
     margin-top: 10px;
+    border-radius: 13px
 }

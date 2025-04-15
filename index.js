@@ -1,13 +1,19 @@
 
-let jsonData = null; // This will hold the imported JSON
+let jsonData = null;
+let fileName = "";
 
+// handle JSON file uploads
 document.getElementById('jsonFileInput').addEventListener('change', function (event) {
     const file = event.target.files[0];
+    fileName = file.name;
+    console.log(fileName)
+    
     if (file) {
-        const reader = new FileReader();
 
-        reader.onload = function (uploadedData) { // Defining the behavior, for when readAsText is called
+        const reader = new FileReader();
+        reader.onload = function (uploadedData) { 
             try {
+                console.log("UPLOADEDATA => " + JSON.stringify(uploadedData.name))
                 jsonData = JSON.parse(uploadedData.target.result);
                 // alert("JSON file loaded successfully!");
             } catch (error) {
@@ -23,7 +29,7 @@ document.getElementById('jsonFileInput').addEventListener('change', function (ev
 
 function processJSON() {
     if (!jsonData) {
-        alert("Please upload a JSON file first.");
+        alert("Please upload a JSON file first. \nClick \"Choose File\" and select your menu JSON file exported from menu editor.");
         return;
     }
     try {
@@ -46,7 +52,7 @@ function processJSON() {
         });
 
 
-        // Opion Item
+        //For Opion Items
         jsonData["options"].forEach(optionCategories => {
             optionCategories.values.forEach(childOptionItems => {
                 let externalId2;
@@ -69,7 +75,8 @@ function processJSON() {
 
         // Create a link element to trigger the download
         const link = document.createElement('a');
-        link.download = 'PosID_registered_menu.json'; // Set the desired filename
+        // link.download = fileName + "with_posID.json" // Set the desired filename
+        link.download = `$has_PosID_${fileName}` // Set the desired filename
         link.href = URL.createObjectURL(blob); // Create an object URL for the Blob
 
         // Trigger the download by clicking the link programmatically
@@ -83,9 +90,13 @@ function processJSON() {
 }
 
 
+
+
+// "Remove File" button
 function removeJSON() {
     try {
         jsonData = null
+        fileName = ""
         counter = 1
         document.getElementById('jsonFileInput').value = '';
         document.getElementById('output').value = '';

@@ -1,31 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" data-cb-heading-font="WoltHeading-Omnes" >
+<html lang="en" data-cb-heading-font="WoltHeading-Omnes">
+
 <head>
 
-    <link rel="stylesheet" type="text/css" href="index.css">
+  <link rel="stylesheet" type="text/css" href="index.css">
+  <link rel="icon" type="image/x-icon" href="./wolteasterlogo.png">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto POS Registration</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto POS Registration</title>
 </head>
 
 <body>
 
-    <h2>Upload Menu JSON File</h2>
+  <h3>Upload Menu JSON File</h3>
 
-    <input type="file" id="jsonFileInput" accept=".json">
-    <button onclick="removeJSON()">Remove file</button>
-    <button onclick="processJSON()">Register POS ID</button>
-    
-  <h3>POS ID - REGISTERED JSON Output:</h3>
-    <textarea id="output" readonly></textarea>
+  <input type="file" id="jsonFileInput" accept=".json">
+  <button onclick="removeJSON()">Remove file</button>
+  <button onclick="processJSON()">Register POS ID</button>
+
+  <h6 class="JsonOutputTitile">POS ID - registered JSON menu Output:</h6>
+  <textarea id="output" readonly></textarea>
 
   <p style="font-size: 20px; padding-bottom: 5px;">※ Problems => contact Hibiki Shibata ※</p>
 
 
 
-    <script src="index.js"></script>
+  <script src="index.js"></script>
 
 
 </body>
+
 </html>

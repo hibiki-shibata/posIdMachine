@@ -30,16 +30,20 @@ button {
     visibility: hidden;
     background-color: grey;
     color: #fff;
-    text-align: center;
-    padding: 13px 18px;
+    text-align: left;
+    padding-right: 19px;
     border-radius: 6px;
     font-size: 13px;
     font-weight: lighter;
+    
 
     position: absolute;
-    /* left: 50%; */
-    /* transform: translateX(-50%); */
-    transform: translateY(-10%);
+    top: 125%; 
+    left: 50%;
+
+    font-family: -apple-system, "system-ui", Roboto, "Segoe UI", Arimo, "Open Sans", sans-serif;
+    /* transform: translateX(-100); */
+    /* transform: translateY(-10%); */
 
     opacity: 0;
     transition: opacity 0.3s;

@@ -24,9 +24,9 @@ button {
 .tooltip-container {
     position: relative;
     display: inline-block;
-  }
+}
 
-  .toolTipText {
+.toolTipText {
     visibility: hidden;
     background-color: grey;
     color: #fff;
@@ -35,26 +35,25 @@ button {
     border-radius: 6px;
     font-size: 13px;
     font-weight: lighter;
-    
 
     position: absolute;
-    top: 125%; 
+    z-index: 1;
+    top: 125%;
     left: 50%;
 
     font-family: -apple-system, "system-ui", Roboto, "Segoe UI", Arimo, "Open Sans", sans-serif;
     /* transform: translateX(-100); */
     /* transform: translateY(-10%); */
-
     opacity: 0;
     transition: opacity 0.3s;
     white-space: nowrap;
-  }
+}
 
 
-  .tooltip-container:hover .toolTipText {
+.tooltip-container:hover .toolTipText {
     visibility: visible;
     opacity: 1;
-  }
+}
 
 
 

@@ -79,16 +79,18 @@ input {
 
 textarea {
     width: 80%;
-    height: 473px;
+    /* height: 473px; */
+    height: 600px;
     border-radius: 13px;
     background-color: #d6d6d6;
     border: none;
-    margin-bottom: 0;
 }
 
 .contactInfo {
-    font-size: 17px;
+    /* bottom: 0; */
+    font-size: 13px;
     padding-bottom: 5px;
-    margin-top: 0;
-    color: #d6d6d6;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    color: #d6d6d6cc;
 }
